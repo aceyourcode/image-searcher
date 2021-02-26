@@ -1,6 +1,3 @@
-
-
-
 const input = document.querySelector("#search");
 
 input.addEventListener('input', e => {
@@ -12,7 +9,7 @@ input.addEventListener('input', e => {
 
 const options = {
   headers: {
-    Authorization: '563492ad6f91700001000001ea4261c9c1294df5859712cf65790ad8'
+    Authorization: 'Your_api_key'
   }
 }
 
@@ -24,7 +21,7 @@ function searchImage(query) {
   fetch(url, options)
     .then(d => d.json())
     .then(renderImages)
-    
+    .catch(e => console.error())
 }
 
 function renderImages({ photos }) {
@@ -36,6 +33,9 @@ function renderImages({ photos }) {
         <img src="${src.medium}"></img>
         `
     })
+    
+  }else {
+    html = "no Image found"
   }
   results.innerHTML = html;
 }
